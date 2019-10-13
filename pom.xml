@@ -33,7 +33,7 @@
   <groupId>org.apache.httpcomponents.core5</groupId>
   <artifactId>httpcore5-parent</artifactId>
   <name>Apache HttpComponents Core Parent</name>
-  <version>5.0-beta9-SNAPSHOT</version>
+  <version>5.0-beta10-SNAPSHOT</version>
   <description>Apache HttpComponents Core is a library of components for building HTTP enabled services</description>
   <url>http://hc.apache.org/httpcomponents-core-5.0.x/</url>
   <inceptionYear>2005</inceptionYear>
@@ -61,7 +61,7 @@
     <connection>scm:git:https://git-wip-us.apache.org/repos/asf/httpcomponents-core.git</connection>
     <developerConnection>scm:git:https://git-wip-us.apache.org/repos/asf/httpcomponents-core.git</developerConnection>
     <url>https://github.com/apache/httpcomponents-core/tree/${project.scm.tag}</url>
-    <tag>5.0-beta9-SNAPSHOT</tag>
+    <tag>5.0-beta10-SNAPSHOT</tag>
   </scm>
 
   <modules>
@@ -76,7 +76,7 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
-    <conscrypt.version>1.4.2</conscrypt.version>
+    <conscrypt.version>2.2.1</conscrypt.version>
     <junit.version>4.12</junit.version>
     <mockito.version>2.25.1</mockito.version>
     <slf4j.version>1.7.25</slf4j.version>
@@ -247,6 +247,7 @@
             <exclude>maven-eclipse.xml</exclude>
             <exclude>src/docbkx/resources/**</exclude>
             <exclude>src/test/resources/*.truststore</exclude>
+            <exclude>src/test/resources/*.p12</exclude>
             <exclude>**/.dockerignore</exclude>
             <!-- Eclipse can leave some file in 'bin' when an imported project misconfigured. -->
             <exclude>bin/**</exclude>

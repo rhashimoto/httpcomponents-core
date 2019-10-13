@@ -51,7 +51,6 @@ import org.apache.hc.core5.reactor.IOEventHandlerFactory;
 import org.apache.hc.core5.reactor.IOReactorConfig;
 import org.apache.hc.core5.reactor.IOSession;
 import org.apache.hc.core5.reactor.IOSessionListener;
-import org.apache.hc.core5.reactor.ProtocolIOSession;
 import org.apache.hc.core5.util.Timeout;
 
 /**
@@ -73,7 +72,7 @@ public class AsyncRequesterBootstrap {
     private PoolConcurrencyPolicy poolConcurrencyPolicy;
     private TlsStrategy tlsStrategy;
     private Timeout handshakeTimeout;
-    private Decorator<ProtocolIOSession> ioSessionDecorator;
+    private Decorator<IOSession> ioSessionDecorator;
     private Callback<Exception> exceptionCallback;
     private IOSessionListener sessionListener;
     private Http1StreamListener streamListener;
@@ -100,14 +99,6 @@ public class AsyncRequesterBootstrap {
     public final AsyncRequesterBootstrap setHttp1Config(final Http1Config http1Config) {
         this.http1Config = http1Config;
         return this;
-    }
-
-    /**
-     * @deprecated Use {@link #setHttp1Config(Http1Config)}
-     */
-    @Deprecated
-    public final AsyncRequesterBootstrap sethttp1Config(final Http1Config http1Config) {
-        return setHttp1Config(http1Config);
     }
 
     /**
@@ -180,9 +171,9 @@ public class AsyncRequesterBootstrap {
     }
 
     /**
-     * Assigns {@link ProtocolIOSession} {@link Decorator} instance.
+     * Assigns {@link IOSession} {@link Decorator} instance.
      */
-    public final AsyncRequesterBootstrap setIOSessionDecorator(final Decorator<ProtocolIOSession> ioSessionDecorator) {
+    public final AsyncRequesterBootstrap setIOSessionDecorator(final Decorator<IOSession> ioSessionDecorator) {
         this.ioSessionDecorator = ioSessionDecorator;
         return this;
     }

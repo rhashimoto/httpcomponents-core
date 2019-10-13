@@ -31,6 +31,7 @@ import java.net.SocketAddress;
 import java.nio.channels.ByteChannel;
 import java.util.concurrent.locks.Lock;
 
+import org.apache.hc.core5.annotation.Internal;
 import org.apache.hc.core5.http.SocketModalCloseable;
 import org.apache.hc.core5.util.Identifiable;
 import org.apache.hc.core5.util.Timeout;
@@ -51,11 +52,26 @@ import org.apache.hc.core5.util.Timeout;
  *
  * @since 4.0
  */
+@Internal
 public interface IOSession extends ByteChannel, SocketModalCloseable, Identifiable {
 
     int ACTIVE       = 0;
     int CLOSING      = 1;
     int CLOSED       = Integer.MAX_VALUE;
+
+    /**
+     * Returns event handler associated with the session.
+     *
+     * @since 5.0
+     */
+    IOEventHandler getHandler();
+
+    /**
+     * Upgrades event handler associated with the session.
+     *
+     * @since 5.0
+     */
+    void upgrade(IOEventHandler handler);
 
     /**
      * Returns session lock that should be used by I/O event handlers
@@ -158,17 +174,6 @@ public interface IOSession extends ByteChannel, SocketModalCloseable, Identifiab
      * @return session status.
      */
     int getStatus();
-
-    /**
-     * Determines if the session has been terminated.
-     *
-     * @return {@code true} if the session has been terminated,
-     *   {@code false} otherwise.
-     *
-     * @deprecated Use {@link #isOpen()}
-     */
-    @Deprecated
-    boolean isClosed();
 
     /**
      * Returns value of the socket timeout in milliseconds. The value of

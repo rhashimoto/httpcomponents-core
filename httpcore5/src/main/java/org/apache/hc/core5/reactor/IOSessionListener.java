@@ -27,20 +27,19 @@
 
 package org.apache.hc.core5.reactor;
 
+import org.apache.hc.core5.annotation.Internal;
+
 /**
  * {@link IOSession} even listener.
  *
  * @since 5.0
  */
+@Internal
 public interface IOSessionListener {
 
-    void tlsStarted(IOSession session);
-
-    void tlsInbound(IOSession session);
-
-    void tlsOutbound(IOSession session);
-
     void connected(IOSession session);
+
+    void startTls(IOSession session);
 
     void inputReady(IOSession session);
 
